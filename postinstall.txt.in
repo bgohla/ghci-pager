@@ -1,0 +1,11 @@
+Add the following lines to your 'GHCI_CONF_FILE' file
+
+    :def source readFile
+    :source GHC_CONF/GHCI_PAGER_SUBDIR/less.conf
+
+to load the pager module during ghci startup.
+
+Note:
+Because the 'Less' module is not part of a package, the ':set
+-interactive-print=Less.less' it will not survive 'cd, add, load,
+reload, set'. Use ':setless' to reenable it.

@@ -1,0 +1,10 @@
+:set -package process
+:set -package temporary
+:set -package directory
+:add GHC_CONF/GHCI_PAGER_SUBDIR/Less.hs
+let setless _ = return ":set -interactive-print=Less.less"
+:def setless setless
+:setless
+-- Because the 'Less' module is not part of a package, the ':set
+-- -interactive-print=Less.less' it will not survive 'cd, add, load,
+-- reload, set'. Use ':setless' to reenable it.
