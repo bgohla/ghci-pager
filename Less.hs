@@ -1,7 +1,6 @@
 module Less where
 
 import           Control.Monad
-import           Data.Maybe
 import           System.Directory
 import           System.Environment
 import           System.IO.Temp
@@ -24,12 +23,9 @@ wrapLines l = unlines . fmap (unlines . wrapLine l) . lines
 defaultWindow :: Window Int
 defaultWindow = Window 40 80
 
-window :: IO (Window Int)
-window = fromMaybe defaultWindow <$> return Nothing -- size
-
 less :: (Show a) => a -> IO ()
 less a = do
-  Window _ w <- window
+  Window _ w <- pure defaultWindow
   lessPath <- getEnv "PAGER"
   p <- writeSystemTempFile tempTemplate $ wrapLines ((-) w 1) $ show a
   (_, _, _, h) <- createProcess $ proc lessPath [p]
