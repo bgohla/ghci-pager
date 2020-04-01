@@ -2,7 +2,7 @@ CP = cp -nvi
 
 .PHONY: help
 help: displaylogo
-	@echo "run «make install» to install."
+	@echo "run «make install» to install. Or run «make config» and edit the 'config' file separately."
 
 .PHONY: displaylogo
 displaylogo: logo.txt
